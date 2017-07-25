@@ -1,5 +1,11 @@
 #! /bin/bash
 
+cur_dir=`pwd`
+android_code_path="/home/bobwang/apt_sh01/work.d/debug.st8.rel.24.uda.r1"
+symbols_path="$android_code_path/out/debug/target/product/shieldtablet/symbols/system/lib"
+
+lldb_server="$cur_dir/lldb.server/armeabi/lldb-server"
+
 debug_module=$1
 
 #filter correct debug module
@@ -16,12 +22,6 @@ if [ "x`adb get-state`" != "xdevice" ]; then
     echo "No devices" 
     exit 1
 fi
-
-cur_dir=`pwd`
-android_code_path="/home/bobwang/apt_sh01/work.d/debug.st8.rel.24.uda.r1"
-symbols_path="$android_code_path/out/debug/target/product/shieldtablet/symbols/system/lib"
-
-lldb_server="$cur_dir/lldb.server/armeabi/lldb-server"
 
 echo "rooting device ..."
 adb root
